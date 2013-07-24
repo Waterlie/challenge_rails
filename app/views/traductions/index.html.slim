@@ -1,0 +1,21 @@
+h1 Listing traductions
+
+table
+  tr
+    th Fr
+    th En
+    th
+    th
+    th
+
+  - @traductions.each do |traduction|
+    tr
+      td = traduction.fr
+      td = traduction.en
+      td = link_to 'Show', traduction
+      td = link_to 'Edit', edit_traduction_path(traduction)
+      td = link_to 'Destroy', traduction, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Traduction', new_traduction_path

@@ -1,9 +1,16 @@
 ChallengeRails::Application.routes.draw do
+
+  root  'traductions#home'
+  match '/home', to: 'traductions#home', via: 'get'
+  match '/history', to: 'traductions#history', via: 'get'
+  match '/help', to: 'traductions#help', via: 'get'
+
+  resources :traductions
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -39,7 +46,7 @@ ChallengeRails::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

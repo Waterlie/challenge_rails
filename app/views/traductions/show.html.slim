@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Fr:
+  = @traduction.fr
+p
+  strong En:
+  = @traduction.en
+
+= link_to 'Edit', edit_traduction_path(@traduction)
+'|
+= link_to 'Back', traductions_path
