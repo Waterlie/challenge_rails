@@ -13,7 +13,7 @@ class TraductionsController < ApplicationController
 
   def history
     @title = "History"
-    @traductions = Traduction.all
+    @traductions = Traduction.all.reverse
   end
 
   def help
