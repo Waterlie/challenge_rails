@@ -1,12 +1,19 @@
+require 'open-uri'
+require 'json'
+
 class TraductionsController < ApplicationController
   before_action :set_traduction, only: [:show, :edit, :update, :destroy]
 
   def home
     @title = "Home"
+    if @traduction.nil?
+      @traduction = Traduction.new
+    end
   end
 
   def history
     @title = "History"
+    @traductions = Traduction.all
   end
 
   def help
@@ -37,13 +44,15 @@ class TraductionsController < ApplicationController
   # POST /traductions.json
   def create
     @traduction = Traduction.new(traduction_params)
-
+    @data = JSON.parse(open(URI.escape("http://translate.google.com/translate_a/t?client=p&q="+@traduction.fr+"&hl=en&sl=fr&tl=en&ie=UTF-8&oe=UTF-8&multires=0")).read)
+    @tmp = @data['sentences'][0]['trans']
+    @traduction.en = @tmp
     respond_to do |format|
       if @traduction.save
         format.html { redirect_to @traduction, notice: 'Traduction was successfully created.' }
         format.json { render action: 'show', status: :created, location: @traduction }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'home' }
         format.json { render json: @traduction.errors, status: :unprocessable_entity }
       end
     end

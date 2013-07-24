@@ -1,1 +1,11 @@
 h1 Challenge Rails
+
+table
+  tr
+    th French
+    th English
+  - @traductions.each do |traduction|
+    tr
+      td = traduction.fr
+      td = traduction.en
+br

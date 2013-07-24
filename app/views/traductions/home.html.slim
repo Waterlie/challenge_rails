@@ -1,1 +1,9 @@
 h1 Challenge Rails
+p#notice = notice
+= form_for(@traduction) do |f|
+  div.field
+    = f.label "French"
+    br
+    = f.text_field :fr
+  div.actions
+    = f.submit "Translate"
